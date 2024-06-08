@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login/sign up to save your highscore</title>
+    <!-- Cool Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+        #content_container {
+            width: 30%;
+            height: 70%;
+            align-items: center;
+        }
+        #form_container {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            box-shadow: 0 0 50px -20px #000;
+            border-radius: 2%;
+            overflow: hidden;
+            background-color: lightblue;
+            align-content: center;
+        }
+        #form_header_container {
+            width: 100%;
+            height: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+            padding: 20px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            border-bottom: 1px solid transparent;
+            background: #000;
+        }
+        #form_header {
+            display: inline-block;
+            font-size: 15px;
+            font-family: Bowlby One SC;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+        #form_content_container {
+            width: 100%;
+            height: 90%;
+            float: left;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 30px;
+        }
+        #form_content_inner_container {
+            width: 75%;
+            height: 100%;
+            color: #000000;
+            float: left;
+        }
+        input {
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            font-family: Montserrat;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 2px solid transparent;
+            border-top-left-radius: 2%;
+            border-top-right-radius: 2%;
+            align-items: center;
+        }
+        #button_container {
+            width: 100%;
+            height: 10%;
+            background-color: #000;
+            color: #fff;
+            float: left;
+            margin-top: 5px;
+            align-items: center;
+        }
+        #button_container button {
+            width: 50%;
+            height: 100%;
+            float: left;
+            background: black;
+            color: inherit;
+            font-family: Montserrat;
+            letter-spacing: 1px;
+            font-weight: 900;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+       
+.button-51 {
+  background-color: transparent;
+  border: 1px solid #266DB6;
+  box-sizing: border-box;
+  color: #00132C;
+  font-family: "Avenir Next LT W01 Bold",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  right: 850px;
+  top: -300px;
+}
+
+.button-51:hover,
+.button-51:active {
+  outline: 0;
+}
+
+.button-51:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-51:before {
+  background-color: #D5EDF6;
+  content: "Home";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+.button-51:hover:before {
+  background-color: #6DCFF6;
+}
+
+@media (min-width: 768px) {
+  .button-51 {
+    padding: 16px 32px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div id="content_container">
+        <div id="form_container">
+            <div id="form_header_container">
+                <h2 id="form_header"> Login/sign up to save your highscore </h2>
+            </div>
+            <div id="form_content_container">
+                <div id="form_content_inner_container">
+                    <input type="text" id="full_name" placeholder="Name">
+                    <input type="email" id="email" placeholder="Email">
+                    <input type="password" id="password" placeholder="Password">
+                    <h2 id="scoreDisplay"></h2>
+                    <div id="button_container">
+                        <button id="signUpButton">Sign Up</button>
+                        <button id="signInButton">Sign In</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+       
+        <div id="secretContent">
+            <div id="button_container1">
+                <h2 id="displayText">Your text will appear here</h2>
+                <button id="signOutButton">Sign out</button>
+                <button></button>
+            </div>
+        </div>
+    </div>
+    <button class="button-51" role="button"  onclick="window.location.href='index.html';"></button> </button>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script type="module"> 
+   
+        const firebaseConfig = {
+            apiKey: "AIzaSyDW9v17UJm3ry7ccV7bz1To2NZdOdYBBV0",
+            authDomain: "tech-2024.firebaseapp.com",
+            databaseURL: "https://tech-2024-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "tech-2024",
+            storageBucket: "tech-2024.appspot.com",
+            messagingSenderId: "80121578021",
+            appId: "1:80121578021:web:48769f1b25026aec4675cc",
+            measurementId: "G-YK4JKH5603"
+        };
+
+        
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+    import { getDatabase, ref, set, update, get, push } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    const signUpButton = document.querySelector("#signUpButton");
+    const signInButton = document.querySelector("#signInButton");
+    const signOutButton = document.querySelector("#signOutButton");
+
+    const saveScoreHistory = async (userId, score) => {
+    const scoreHistoryRef = ref(database, 'scoreHistory/' + userId);
+    const newScoreRef = push(scoreHistoryRef);
+    await set(newScoreRef, {
+        score: score,
+        date: new Date().toISOString()
+    });
+};
+
+const userSignUp = async () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const highscore = parseInt(localStorage.getItem('score')) || 0;
+
+    if (!validate_email(email) || !validate_password(password)) {
+        alert('Invalid email or password. Please check your input.');
+        return;
+    }
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userRef = ref(database, 'users/' + user.uid);
+        const user_data = {
+            email: email,
+            highscore: highscore,
+            last_login: Date.now()
+        };
+
+        await set(userRef, user_data);
+        await saveScoreHistory(user.uid, highscore); // Save the initial score to the history
+        alert('User Signed Up and Data Saved Successfully!');
+    } catch (error) {
+        alert(error.message);
+    }
+};
+
+const userSignIn = async () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const highscore = parseInt(localStorage.getItem('score')) || 0;
+
+    if (!validate_email(email) || !validate_password(password)) {
+        alert('Invalid email or password. Please check your input.');
+        return;
+    }
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userRef = ref(database, 'users/' + user.uid);
+        const userSnapshot = await get(userRef);
+        const currentHighScore = userSnapshot.exists() ? parseInt(userSnapshot.val().highscore) : 0;
+
+        const newHighScore = Math.max(highscore, currentHighScore);
+        const user_data = {
+            last_login: Date.now(),
+            highscore: newHighScore
+        };
+
+        await update(userRef, user_data);
+        await saveScoreHistory(user.uid, highscore); // Save the score to the history
+        alert('User Logged In and Data Updated Successfully!');
+    } catch (error) {
+        alert(error.message);
+    }
+};
+    // Check authentication state
+    const checkAuthState = () => {
+    onAuthStateChanged(auth, user => {
+        const secretContent = document.getElementById('secretContent');
+        const form_container = document.getElementById('form_container');
+        if (user) {
+            secretContent.style.display = 'block';
+            form_container.style.display = 'none';
+            displayScoreHistory(user.uid); // Display score history for the authenticated user
+        } else {
+            secretContent.style.display = 'none';
+            form_container.style.display = 'block';
+        }
+    });
+};
+    const userSignOut = async () => {
+        try {
+            await signOut(auth);
+            alert('User Signed Out Successfully!');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    // Validation functions
+    function validate_email(email) {
+        const expression = /^[^@]+@\w+(\.\w+)+\w$/;
+        return expression.test(String(email).toLowerCase());
+    }
+
+    function validate_password(password) {
+        return password.length >= 6;
+    }
+
+    function validate_field(field) {
+        return field.trim() !== '';
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('full_name');
+        const h2 = document.getElementById('displayText');
+
+        input.addEventListener('input', () => {
+            h2.textContent = input.value;
+        });
+
+        const score = localStorage.getItem('score');
+        if (score !== null) {
+            document.getElementById('scoreDisplay').textContent = `Your score is: ${score}`;
+        } else {
+            document.getElementById('scoreDisplay').textContent = `No score available.`;
+        }
+    });
+
+    signUpButton.addEventListener('click', userSignUp);
+    signInButton.addEventListener('click', userSignIn);
+    signOutButton.addEventListener('click', userSignOut);
+
+    // Check authentication state initially
+    checkAuthState();
+</script>
